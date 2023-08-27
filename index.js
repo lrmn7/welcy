@@ -78,7 +78,7 @@ client.on("guildMemberAdd", async member => {
 
   const guildname = member.guild.name;
   const welcomeMessage = `Welcome to ${guildname} <@${member.id}>`;
-  member.guild.channels.cache.get(config.Botconfig.channelid).send({
+  member.guild.channels.cache.get(config.Botconfig.welcomeChannelID).send({
     content: welcomeMessage,
     files: [{
       attachment: welcome,
@@ -101,7 +101,7 @@ client.on("guildMemberRemove", async member => {
 
   const guildname = member.guild.name;
   const farewellMessage = `${member.user.tag} has left ${guildname}. Goodbye!`;
-  member.guild.channels.cache.get(config.Botconfig.channelid).send({
+  member.guild.channels.cache.get(config.Botconfig.farewellChannelID).send({
     content: farewellMessage,
     files: [{
       attachment: farewell,
@@ -126,12 +126,12 @@ client.on('interactionCreate', (interaction) => {
 
     const githubbutton = new ButtonBuilder()
       .setLabel('GitHub Repository')
-      .setURL('https://github.com/lrmn7/Discord-Welcome-Bot-v2')
+      .setURL('https://github.com/lrmn7/')
       .setStyle(ButtonStyle.Link);
 
     const developerbutton = new ButtonBuilder()
       .setLabel('Developer')
-      .setURL('https://hi.lrmn.site')
+      .setURL('https://lrmn.is-a.dev/')
       .setStyle(ButtonStyle.Link);
 
     const pingembed = {

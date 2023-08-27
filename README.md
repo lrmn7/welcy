@@ -1,5 +1,5 @@
-![Readme Banner](assets/welcome_sample.png)
-![Readme Banner](assets/farewell_sample.png)
+![Readme Banner](assets/welcom.png)
+![Readme Banner](assets/bey.png)
 # Discord Welcome Bot
 
 A Discord bot that sends a welcome message and an image with the background and profile picture of a user who joins the server. Built using NodeJS, runs on nodemon
@@ -42,18 +42,19 @@ To configure the bot, you need to provide the following details in the `config.j
 - `YOUR_BOT_TOKEN`: Replace with your actual bot token.
 - `YOUR_CLIENT_ID`: Replace with your bot's client ID.
 - `YOUR_GUILD_ID`: Replace with the ID of the guild (server) where you want to register the slash commands.
-- `YOUR_WELCOME_CHANNEL_ID`: Replace with the actual channel ID for the welcome message.
+- `WELLCOME_CHANNEL_ID`: Replace with the actual channel ID for the welcome message.
+- `FAREWELL_CHANNEL_ID`: Replace with the actual channel ID for the farewell message.
 
 Rest of the configurations can be done according to your wish in the `config.js` file.
 
 
 ## Dependencies
 
-- discord.js: `^13.1.0`
-- @discordjs/rest: `^0.1.0`
+- discord.js: `^14.11.0`
+- @discordjs/rest: `^1.z.1`
 - discord-api-types: `^9.0.0`
 - canvafy: `^5.0.0`
-- nodemon: `^2.0.22`
+- nodemon: `^3.0.1`
 
 ## License
 

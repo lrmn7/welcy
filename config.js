@@ -5,7 +5,8 @@ module.exports = {
     token: process.env.BOT_TOKEN,
     clientid: process.env.CLIENT_ID,
     guildid: process.env.GUILD_ID,
-    channelid: process.env.CHANNEL_ID,
+    welcomeChannelID: process.env.WELLCOME_CHANNEL_ID,
+    farewellChannelID: process.env.FAREWELL_CHANNEL_ID,
   },
 
   Image: {
@@ -21,7 +22,7 @@ module.exports = {
 
     Presence: {
         status: "idle", //Put your bot status here (online, idle, dnd, invisible)
-        activity: "your heart💖", //Put your bot activity here (playing, streaming, listening, watching)
-        type: "LISTENING", //Put your bot activity type here (PLAYING, STREAMING, LISTENING, WATCHING)
+        activity: "Made by Tragic", //Put your bot activity here (playing, streaming, listening, watching)
+        type: "WATCHING", //Put your bot activity type here (PLAYING, STREAMING, LISTENING, WATCHING)
     },
 }
