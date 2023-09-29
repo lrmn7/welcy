@@ -10,14 +10,14 @@ module.exports = {
   },
 
   Image: {
-    background: process.env.BACKGROUND_URL || "https://cdn.discordapp.com/attachments/1098969636306960465/1131203242668347463/lucyradio.png",
-    titlemessagecolor: "#ffffff",
-    welcomeDescription: "Welcome to the server! Let's play and chit chat together!!",
-    farewellDescription: "Goodbye, We'll miss you!",
-    descriptioncolor: "#c0ffee",
-    bordercolor: "#2a2e35",
-    avatarbordercolor: "#2a2e35",
-    overlayopacity: 0.3,
+    background: process.env.BACKGROUND_URL || "https://cdn.discordapp.com/attachments/1098969636306960465/1157152464320090212/madevytragic.png",
+    titlemessagecolor: "#fff474",
+    welcomeDescription: "Let's play and chit chat together!!",
+    farewellDescription: "See you soon, We'll miss you!",
+    descriptioncolor: "#ffffff",
+    bordercolor: "#fd9a73",
+    avatarbordercolor: "#1d1b1b",
+   // overlayopacity: 0.3,
   },
 
     Presence: {

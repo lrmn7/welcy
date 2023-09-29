@@ -28,21 +28,10 @@ client.once('ready', () => {
       );
       console.log('\x1b[36m%s\x1b[0m', 'Slash commands registered successfully!');
       console.log('\x1b[31m%s\x1b[0m', `A discord welcome bot by`);
-      console.log('\x1b[31m%s\x1b[0m', ` 
-
-      █░░░░░░████████████░░░░░░░░░░░░░░░░███░░░░░░██████████░░░░░░█░░░░░░██████████░░░░░░█
-      █░░▄▀░░████████████░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀░░░░░░░░░░░░░░▄▀░░█░░▄▀░░░░░░░░░░██░░▄▀░░█
-      █░░▄▀░░████████████░░▄▀░░░░░░░░▄▀░░███░░▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀▄▀░░█░░▄▀▄▀▄▀▄▀▄▀░░██░░▄▀░░█
-      █░░▄▀░░████████████░░▄▀░░████░░▄▀░░███░░▄▀░░░░░░▄▀░░░░░░▄▀░░█░░▄▀░░░░░░▄▀░░██░░▄▀░░█
-      █░░▄▀░░████████████░░▄▀░░░░░░░░▄▀░░███░░▄▀░░██░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░██░░▄▀░░█
-      █░░▄▀░░████████████░░▄▀▄▀▄▀▄▀▄▀▄▀░░███░░▄▀░░██░░▄▀░░██░░▄▀░░█░░▄▀░░██░░▄▀░░██░░▄▀░░█
-      █░░▄▀░░████████████░░▄▀░░░░░░▄▀░░░░███░░▄▀░░██░░░░░░██░░▄▀░░█░░▄▀░░██░░▄▀░░██░░▄▀░░█
-      █░░▄▀░░████████████░░▄▀░░██░░▄▀░░█████░░▄▀░░██████████░░▄▀░░█░░▄▀░░██░░▄▀░░░░░░▄▀░░█
-      █░░▄▀░░░░░░░░░░████░░▄▀░░██░░▄▀░░░░░░█░░▄▀░░██████████░░▄▀░░█░░▄▀░░██░░▄▀▄▀▄▀▄▀▄▀░░█
-      █░░▄▀▄▀▄▀▄▀▄▀░░████░░▄▀░░██░░▄▀▄▀▄▀░░█░░▄▀░░██████████░░▄▀░░█░░▄▀░░██░░░░░░░░░░▄▀░░█
-      █░░░░░░░░░░░░░░████░░░░░░██░░░░░░░░░░█░░░░░░██████████░░░░░░█░░░░░░██████████░░░░░░█
+      console.log('\x1b[31m%s\x1b[0m', `
+      🅻 🆁🅼🅽
       
-    `);
+      `);
     } catch (error) {
       console.error(error);
     }
@@ -54,7 +43,7 @@ client.once('ready', () => {
     status: config.Presence.status.toLowerCase(),
   });
 
-  // Start the server Express for web view
+  // Start the Express server for web view
   const app = express();
   app.get('/', (req, res) => {
     res.send('<h1>Bot is Online!</h1>'); // Ganti dengan konten yang ingin Anda tampilkan di web view
@@ -66,26 +55,37 @@ client.once('ready', () => {
 });
 
 client.on("guildMemberAdd", async member => {
-  const welcome = await new canvafy.WelcomeLeave()
-    .setAvatar(member.user.displayAvatarURL({ forceStatic: true, extension: "png" }))
-    .setBackground("image", config.Image.background)
-    .setTitle("Welcome!", config.Image.titleMessageColor) // Fix the method call
-    .setDescription(config.Image.welcomeDescription, config.Image.descriptionColor)
-    .setBorder(config.Image.bordercolor)
-    .setAvatarBorder(config.Image.avatarbordercolor)
-    .setOverlayOpacity(config.Image.overlayopacity)
-    .build();
+  try {
+    const guild = member.guild;
+    const channel = await guild.channels.fetch(config.Botconfig.welcomeChannelID);
+    if (!channel) {
+      console.error("Welcome channel not found.");
+      return;
+    }
 
-  const guildname = member.guild.name;
-  const welcomeMessage = `Welcome to ${guildname} <@${member.id}>`;
-  member.guild.channels.cache.get(config.Botconfig.welcomeChannelID).send({
-    content: welcomeMessage,
-    files: [{
-      attachment: welcome,
-      name: `welcome-${member.id}.png`
-    }]
-  })
-    .catch(console.error);
+    const welcome = await new canvafy.WelcomeLeave()
+      .setAvatar(member.user.displayAvatarURL({ forceStatic: true, extension: "png" }))
+      .setBackground("image", config.Image.background)
+      .setTitle("Welcome!", config.Image.titleMessageColor) // Fix the method call
+      .setDescription(config.Image.welcomeDescription, config.Image.descriptionColor)
+      .setBorder(config.Image.bordercolor)
+      .setAvatarBorder(config.Image.avatarbordercolor)
+      // .setOverlayOpacity(config.Image.overlayopacity)
+      .build();
+
+    const guildname = guild.name;
+    const welcomeMessage = `Welcome to ${guildname} <@${member.id}>`;
+
+    channel.send({
+      content: welcomeMessage,
+      files: [{
+        attachment: welcome,
+        name: `welcome-${member.id}.png`
+      }]
+    });
+  } catch (error) {
+    console.error(error);
+  }
 });
 
 client.on("guildMemberRemove", async member => {
@@ -96,7 +96,7 @@ client.on("guildMemberRemove", async member => {
     .setDescription(config.Image.farewellDescription, config.Image.descriptionColor)
     .setBorder(config.Image.bordercolor)
     .setAvatarBorder(config.Image.avatarbordercolor)
-    .setOverlayOpacity(config.Image.overlayopacity)
+    // .setOverlayOpacity(config.Image.overlayopacity)
     .build();
 
   const guildname = member.guild.name;

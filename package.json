@@ -24,11 +24,13 @@
   "homepage": "https://github.com/lrmn7/Discord-Welcome-Bot-v2#readme",
   "dependencies": {
     "@discordjs/rest": "^1.7.1",
-    "canvafy": "^5.0.0",
+    "canvafy": "^7.0.4",
     "discord-api-types": "^0.37.43",
     "discord.js": "^14.11.0",
     "dotenv": "^16.3.1",
-    "express": "^4.18.2",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
     "nodemon": "^3.0.1"
   }
 }

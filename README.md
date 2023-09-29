@@ -13,7 +13,7 @@ A Discord bot that sends a welcome message and an image with the background and 
 
 1. Clone this repository.
     ```
-    git clone https://github.com/lrmn7/Discord-Welcome-Bot-V2
+    git clone https://github.com/lrmn7/welcy.git
     ```  
 2. Install the required dependencies 
      ```
@@ -53,7 +53,7 @@ Rest of the configurations can be done according to your wish in the `config.js`
 - discord.js: `^14.11.0`
 - @discordjs/rest: `^1.z.1`
 - discord-api-types: `^9.0.0`
-- canvafy: `^5.0.0`
+- canvafy: `^7.0.4`
 - nodemon: `^3.0.1`
 
 ## License
