@@ -66,22 +66,39 @@ client.on("guildMemberAdd", async member => {
     const welcome = await new canvafy.WelcomeLeave()
       .setAvatar(member.user.displayAvatarURL({ forceStatic: true, extension: "png" }))
       .setBackground("image", config.Image.background)
-      .setTitle("Welcome!", config.Image.titleMessageColor) // Fix the method call
+      .setTitle("Welcome!", config.Image.titleMessageColor)
       .setDescription(config.Image.welcomeDescription, config.Image.descriptionColor)
       .setBorder(config.Image.bordercolor)
       .setAvatarBorder(config.Image.avatarbordercolor)
-      // .setOverlayOpacity(config.Image.overlayopacity)
       .build();
 
     const guildname = guild.name;
-    const welcomeMessage = `Welcome to ${guildname} <@${member.id}>`;
+    const welcomeMessage = `🎗️ Welcome to ${guildname}, <@${member.id}>! 
 
+    We're excited to have you join our community! Before you begin, please follow these steps:
+
+    ➣ **Read the Rules**: Familiarize yourself with our community guidelines and regulations here <#1088032924869349409> .
+    ➣ **Choose Your Role**: To access all server features, including exclusive channels and events, select your role in the <#1091200958337396737> .
+    ➣ **Say Hi**: Introduce yourself in the <#1088037928091009095> . We'd love to get to know you better!
+  
+    By following these steps, you'll have a smooth start in our community and can fully enjoy your time with us. 🚀`;
+
+    const developerbutton = new ButtonBuilder()
+      .setLabel('Oh!BOTLiST')
+      .setURL('https://ohbotlist.hop.sh/')
+      .setStyle(ButtonStyle.Link);
+
+    // Create an action row containing the button
+    const actionRow = new ActionRowBuilder().addComponents(developerbutton);
+
+    // Send the welcome message with the button
     channel.send({
       content: welcomeMessage,
       files: [{
         attachment: welcome,
         name: `welcome-${member.id}.png`
-      }]
+      }],
+      components: [actionRow] // Add the action row with the button
     });
   } catch (error) {
     console.error(error);
@@ -124,9 +141,9 @@ client.on('interactionCreate', (interaction) => {
     const nodeVersion = process.version;
     const version = require('./package.json').version;
 
-    const githubbutton = new ButtonBuilder()
-      .setLabel('GitHub Repository')
-      .setURL('https://github.com/lrmn7/')
+    const sponsorbutton = new ButtonBuilder()
+      .setLabel('Sponsor')
+      .setURL('https://lrmn.is-a.dev/sponsor')
       .setStyle(ButtonStyle.Link);
 
     const developerbutton = new ButtonBuilder()
@@ -195,7 +212,7 @@ client.on('interactionCreate', (interaction) => {
       },
     };
 
-    interaction.reply({ embeds: [pingembed], components: [new ActionRowBuilder().addComponents(githubbutton).addComponents(developerbutton) ] });
+    interaction.reply({ embeds: [pingembed], components: [new ActionRowBuilder().addComponents(sponsorbutton).addComponents(developerbutton) ] });
 
   }
 });
